@@ -1,0 +1,66 @@
+name: PrisonMine
+main: com.wolvencraft.prison.mines.PrisonMine
+version: 1.33.106
+description: A must-have tool for all prison servers
+author: bitWolfy
+depend: [PrisonSuite]
+commands:
+  mine:
+    description: PrisonMine help
+permissions:
+  prison.mine.*:
+    default: op
+    children:
+      prison.mine.admin: true
+  prison.mine.normal:
+    default: true
+    children:
+      prison.mine.info.time: true
+      prison.mine.reset.sign: true
+      prison.mine.protection.*: true
+      prison.mine.reset.broadcast: true
+      prison.mine.about: true
+  prison.mine.admin:
+    default: op
+    children:
+      prison.mine.normal: true
+      prison.mine.info.*: true
+      prison.mine.reset.*: true
+      prison.mine.edit: true
+      prison.mine.bypass.*: true
+  prison.mine.info.*:
+    default: op
+    children:
+      prison.mine.info.time: true
+      prison.mine.info.list: true
+  prison.mine.protection.*:
+    default: true
+    children:
+      prison.mine.protection.break: true
+      prison.mine.protection.place: true
+      prison.mine.protection.pvp: true
+  prison.mine.bypass.*:
+    default: op
+    children:
+      prison.mine.bypass.break: true
+      prison.mine.bypass.place: true
+      prison.mine.bypass.pvp: true
+      prison.mine.bypass.cooldown: true
+  prison.mine.reset.*:
+    default: op
+    children:
+      prison.mine.reset.broadcast: true
+      prison.mine.reset.manual: true
+      prison.mine.reset.sign: true
+  prison.mine.flags.*:
+    default: true
+    children:
+      prison.mine.flags.moneyreward: true
+      prison.mine.flags.moneyrewardplus: true
+      prison.mine.flags.nohungerloss: true
+      prison.mine.flags.noplayerdamage: true
+      prison.mine.flags.notooldamage: true
+      prison.mine.flags.playereffect: true
+      prison.mine.flags.resetsound: true
+      prison.mine.flags.supertools: true
+      prison.mine.flags.toolreplace: true
