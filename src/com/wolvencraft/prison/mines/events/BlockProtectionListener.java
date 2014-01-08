@@ -46,11 +46,17 @@ public class BlockProtectionListener implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
         Message.debug("| + BlockProtectionListener Initialized");
     }
+
     public List<Block> blocks = new ArrayList<>();
 
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
     public void onBlockbreakLow(BlockBreakEvent event) {
         Block b = event.getBlock();
+
+        if (!b.getWorld().getName().equals("world")) {
+            return;
+        }
+
         for (Mine mine : PrisonMine.getStaticMines()) {
             if (mine.getRegion().isLocationInRegion(b.getLocation())) {
                 event.setCancelled(true);
@@ -63,10 +69,17 @@ public class BlockProtectionListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = false)
     public void onBlockbreakHigh(BlockBreakEvent event) {
         Block b = event.getBlock();
-        if (blocks.contains(b)) {
-            event.setCancelled(false);
-            blocks.remove(b);
+
+        if (!b.getWorld().getName().equals("world")) {
+            return;
         }
+
+        if (!blocks.contains(b)) {
+            return;
+        }
+
+        event.setCancelled(false);
+        blocks.remove(b);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
