@@ -111,7 +111,6 @@ public class PrisonMine extends PrisonPlugin {
         Message.debug("+ Initialize Event Listeners");
         new BlockProtectionListener(this);
         new PlayerListener(this);
-        new FlagListener(this);
         
         Message.debug("+ Sending sign task to PrisonCore");
         
